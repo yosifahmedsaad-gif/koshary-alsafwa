@@ -62,7 +62,7 @@
       cash: "Cash on delivery", cashHint: "Pay when your order arrives", walletPayHint: "Mobile wallet",
       walletPhone: "Your mobile wallet phone number", instantTransfer: "Pay with InstaPay",
       instapayContact: "Your InstaPay phone number or handle", orderTotal: "Order total",
-      paymentDemo: "Trial only: this demo does not initiate or complete a payment.",
+      paymentDemo: "Choosing Vodafone Cash or InstaPay opens your phone app to call the restaurant. This demo does not process payments online.",
       placeOrder: "Place demo order", kdsLive: "LOCAL DEMO · LIVE VIEW", kdsTitle: "KITCHEN <em>DISPLAY</em>",
       testChime: "Test chime", activeOrders: "ACTIVE ORDERS",
       demoSales: "DEMO SALES TODAY", clearHistory: "Clear demo history", allCaughtUp: "All caught up.",
@@ -103,7 +103,7 @@
       cash: "الدفع عند الاستلام", cashHint: "ادفع عند وصول طلبك", walletPayHint: "محفظة إلكترونية",
       walletPhone: "رقم هاتف محفظتك الإلكترونية", instantTransfer: "الدفع عبر إنستاباي",
       instapayContact: "رقم هاتف إنستاباي أو المعرّف", orderTotal: "إجمالي الطلب",
-      paymentDemo: "نسخة تجريبية: لا يتم بدء أو إتمام أي عملية دفع.",
+      paymentDemo: "اختيار فودافون كاش أو إنستاباي يفتح تطبيق الهاتف للاتصال بالمطعم. هذه النسخة لا تعالج المدفوعات إلكترونيًا.",
       placeOrder: "تأكيد الطلب التجريبي", kdsLive: "عرض تجريبي محلي · مباشر", kdsTitle: "شاشة <em>المطبخ</em>",
       testChime: "اختبار التنبيه", activeOrders: "طلبات نشطة",
       demoSales: "مبيعات تجريبية اليوم", clearHistory: "مسح سجل التجربة", allCaughtUp: "كل شيء جاهز.",
@@ -897,6 +897,9 @@
       document.querySelector('[name="instapayContact"]').required = radio.value === "instapay" && radio.checked;
       document.querySelector('[name="walletPhone"]').setCustomValidity("");
       document.querySelector('[name="instapayContact"]').setCustomValidity("");
+      if (radio.checked && (radio.value === "vodafone" || radio.value === "instapay")) {
+        window.location.href = document.querySelector(".phone-link").getAttribute("href");
+      }
     });
   });
   document.getElementById("kdsOpen").addEventListener("click", function () {
