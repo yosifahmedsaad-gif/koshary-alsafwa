@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17080a">
+  <meta name="description" content="Koshary Alsafwa — Egyptian comfort food, made with tradition since 1990. Order koshary, tagines, hawawshi and more.">
+  <title>Koshary Alsafwa — أصل الطعم الأصيل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="js/app.js"></script>
+</head>
+<body class="min-h-screen antialiased">
+  <section class="trial-banner" aria-label="بيان المطور">
+    <p>تم تطويره من قبل يوسف</p>
+  </section>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#" aria-label="Koshary Alsafwa home">
+        <img class="brand-logo" src="assets/alsafwa-logo.png" alt="Koshary Alsafwa chef logo · Since 1990 / منذ ١٩٩٠" width="53" height="53">
+        <span class="brand-copy"><strong>كشري الصفوة</strong><small>KOSHARY ALSAFWA</small></span>
+      </a>
+      <div class="header-actions">
+        <button class="kds-trigger icon-button" id="kdsOpen" aria-label="Open kitchen display">👨‍🍳 <span data-i18n="kitchen">Kitchen</span></button>
+        <button class="language-switch" id="languageToggle" aria-label="Switch language">عربي <span class="lang-divider">/</span> EN</button>
+        <a class="phone-link" href="tel:+201030487518"><span class="phone-pulse">☎</span><span>010 3048 7518</span></a>
+        <button class="cart-trigger" id="cartOpen" aria-label="Open shopping cart"><span class="cart-icon">♧</span><span class="cart-label" data-i18n="cart">Cart</span><span id="cartCount" class="cart-count">0</span><span class="cart-total" id="headerTotal">0 <small>EGP</small></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section id="promoBanner" class="promo-banner" aria-label="عروض الصفوة" aria-live="polite" hidden>
+    <div class="promo-banner-heading"><span class="promo-banner-icon" aria-hidden="true">✦</span><strong>عروض الصفوة</strong><span>اختر عرضك واستمتع بالتوفير</span></div>
+    <div id="promoList" class="promo-list"></div>
+  </section>
+
+  <main>
+    <section class="hero relative overflow-hidden">
+      <div class="hero-image" aria-hidden="true"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow"><span class="eyebrow-line"></span><span data-i18n="heroEyebrow">A CAIRO CLASSIC · SINCE 1990</span><span class="eyebrow-line"></span></div>
+        <h1 data-i18n="heroTitle">The authentic taste<br><em>of Egyptian comfort.</em></h1>
+        <p class="hero-ar" lang="ar" dir="rtl">أصل الطعم الأصيل — كشري الصفوة يعني عراقة السنين</p>
+        <p class="hero-description" data-i18n="heroDesc">Generous bowls, slow-cooked flavor, and a little extra love in every layer.</p>
+        <a class="hero-cta" href="#menu"><span data-i18n="exploreMenu">Explore the menu</span><span aria-hidden="true">↘</span></a>
+      </div>
+      <div class="hero-stamp"><span class="stamp-top">KOSHARY</span><span class="stamp-center" aria-hidden="true">🔥</span><span class="stamp-bottom">ALSAFWA · 1990</span></div>
+    </section>
+
+    <section id="menu" class="menu-section">
+      <div class="section-heading">
+        <div><span class="section-kicker" data-i18n="ourMenu">OUR MENU</span><h2 data-i18n="menuTitle">A little bit of <em>everything.</em></h2></div>
+        <p data-i18n="menuSub">Freshly prepared, full of flavor, and ready for your table.</p>
+      </div>
+      <div class="category-row" id="categoryRow" role="tablist" aria-label="Menu categories"></div>
+      <div id="menuGrid" class="menu-grid" aria-live="polite"></div>
+      <div class="menu-footnote"><span>✳</span><span data-i18n="menuNote">Prices shown in Egyptian pounds · All items are prepared fresh to order.</span></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer"><a class="footer-brand" href="#">كشري الصفوة <span>·</span> KOSHARY ALSAFWA</a><p data-i18n="footerText">A Cairo classic, made with love since 1990.</p><span class="footer-small">© 2026 KOSHARY ALSAFWA · TRIAL EXPERIENCE</span></footer>
+
+  <div class="overlay" id="cartOverlay" aria-hidden="true">
+    <button class="overlay-scrim" data-close="cart" aria-label="Close cart"></button>
+    <aside class="side-sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="sheet-heading"><div><span class="section-kicker" data-i18n="yourOrder">YOUR ORDER</span><h2 id="cartTitle" data-i18n="cartTitle">A lovely choice.</h2></div><button class="close-button" data-close="cart" aria-label="Close">×</button></div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-empty" id="cartEmpty"><span>♨</span><p data-i18n="emptyCart">Your cart is waiting for something delicious.</p><button class="text-button" data-close="cart" data-i18n="browseMenu">Browse the menu →</button></div>
+      <div class="cart-bottom" id="cartBottom"><div class="cart-subtotal"><span data-i18n="subtotal">Subtotal</span><strong id="cartSubtotal">0 EGP</strong></div><div class="cart-discount-row" id="cartDiscountRow" hidden><span>خصم العروض</span><strong id="cartDiscount">−0 EGP</strong></div><div class="cart-final-total"><span>الإجمالي بعد الخصم</span><strong id="cartFinalTotal">0 EGP</strong></div><p data-i18n="deliveryNote">Delivery fee is confirmed by the restaurant.</p><button id="checkoutOpen" class="primary-button"><span data-i18n="continueCheckout">Continue to checkout</span><span>→</span></button></div>
+    </aside>
+  </div>
+
+  <div class="overlay" id="checkoutOverlay" aria-hidden="true">
+    <button class="overlay-scrim" data-close="checkout" aria-label="Close checkout"></button>
+    <section class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <div class="sheet-heading"><div><span class="section-kicker" data-i18n="almostThere">ALMOST THERE</span><h2 id="checkoutTitle" data-i18n="checkoutTitle">Make it yours.</h2></div><button class="close-button" data-close="checkout" aria-label="Close">×</button></div>
+      <form id="checkoutForm">
+        <div class="form-grid">
+          <label class="field"><span data-i18n="fullName">Full name</span><input name="name" autocomplete="name" required minlength="2" placeholder="Your name" data-i18n-placeholder="namePlaceholder"></label>
+          <label class="field"><span data-i18n="phoneNumber">Phone number</span><input name="phone" type="text" inputmode="tel" autocomplete="tel" required placeholder="01X XXX XXXX" data-i18n-placeholder="phonePlaceholder"></label>
+          <label class="field field-full"><span data-i18n="deliveryAddress">Delivery address</span><textarea name="address" autocomplete="street-address" required minlength="6" rows="2" placeholder="Building, street, area, and a helpful landmark" data-i18n-placeholder="addressPlaceholder"></textarea><button type="button" class="location-button" id="getLocation">📍 <span data-i18n="getLocation">Use my current location</span></button><span class="location-status" id="locationStatus" aria-live="polite"></span></label>
+        </div>
+        <fieldset class="payment-fieldset"><legend data-i18n="paymentMethod">Payment method</legend>
+          <label class="payment-option"><input type="radio" name="payment" value="cash" checked><span class="payment-icon">💵</span><span><strong data-i18n="cash">Cash on delivery</strong><small data-i18n="cashHint">Pay when your order arrives</small></span><i></i></label>
+          <label class="payment-option"><input type="radio" name="payment" value="vodafone"><span class="payment-icon">📱</span><span><strong>Vodafone Cash</strong><small data-i18n="walletPayHint">Mobile wallet</small></span><i></i></label>
+          <div class="payment-extra" id="vodafoneExtra"><label class="account-name-field"><span data-i18n="walletPhone">Your mobile wallet number</span><input name="walletPhone" type="text" inputmode="tel" autocomplete="tel" placeholder="01X XXX XXXX" data-i18n-placeholder="phonePlaceholder" aria-describedby="paymentDemo"></label></div>
+          <label class="payment-option"><input type="radio" name="payment" value="instapay"><span class="payment-icon">⚡</span><span><strong>InstaPay</strong><small data-i18n="instantTransfer">Instant bank transfer</small></span><i></i></label>
+          <div class="payment-extra" id="instapayExtra"><label class="account-name-field"><span data-i18n="instapayContact">Your InstaPay phone or handle</span><input name="instapayContact" type="text" autocomplete="off" placeholder="Phone number or InstaPay handle" data-i18n-placeholder="instapayPlaceholder" aria-describedby="paymentDemo"></label></div>
+        </fieldset>
+        <div class="checkout-total"><span data-i18n="orderTotal">Order total</span><strong id="checkoutTotal">0 EGP</strong></div>
+        <p class="demo-payment-note" id="paymentDemo" data-i18n="paymentDemo">Trial only: this demo does not initiate or complete a payment.</p>
+        <button type="submit" class="primary-button"><span data-i18n="placeOrder">Place demo order</span><span>→</span></button>
+      </form>
+    </section>
+  </div>
+
+  <div class="overlay" id="pinOverlay" aria-hidden="true">
+    <button class="overlay-scrim" data-close="pin" aria-label="Close kitchen access"></button>
+    <section class="checkout-modal pin-modal" role="dialog" aria-modal="true" aria-labelledby="pinTitle">
+      <div class="sheet-heading"><div><span class="section-kicker">دخول تجريبي للمطبخ</span><h2 id="pinTitle">الدخول إلى شاشة المطبخ</h2></div><button class="close-button" data-close="pin" aria-label="إغلاق">×</button></div>
+      <form id="pinForm">
+        <label class="field pin-field"><span>الرقم السري للمطبخ</span><input id="kdsPin" name="pin" type="password" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{4}" maxlength="4" required placeholder="••••" aria-describedby="pinHelp"></label>
+        <p id="pinHelp" class="demo-payment-note">أدخل الرقم السري المكوّن من ٤ أرقام لفتح شاشة المطبخ.</p>
+        <button type="submit" class="primary-button"><span>فتح شاشة المطبخ</span><span>←</span></button>
+      </form>
+    </section>
+  </div>
+
+  <div class="overlay" id="kdsOverlay" aria-hidden="true">
+    <button class="overlay-scrim" data-close="kds" aria-label="Close kitchen"></button>
+    <section class="kds-screen" role="dialog" aria-modal="true" aria-labelledby="kdsTitle" dir="rtl" lang="ar">
+      <header class="kds-header"><div><span class="kds-live"><i></i><span>شاشة المطبخ · طلبات مباشرة</span></span><h2 id="kdsTitle">شاشة <em>المطبخ</em></h2></div><div class="kds-controls"><button id="chimeButton" class="kds-control">🔔 <span>اختبار التنبيه</span></button><button class="kds-control" id="kdsClose" aria-label="إغلاق">✕</button></div></header>
+      <section id="kdsPromoNotice" class="kds-promo-notice" aria-label="العروض النشطة" hidden></section>
+      <div class="kds-summary"><span><strong id="activeOrderCount">0</strong> <span>طلبات نشطة</span></span><span><strong id="salesTotal">0 ج.م</strong> <span>مبيعات اليوم</span></span><button id="clearHistory" class="clear-history">مسح سجل الطلبات</button></div>
+      <section class="kds-settings" aria-label="إعدادات شاشة المطبخ">
+        <label class="kds-select-field"><span>ترتيب الطلبات</span><select id="orderSort"><option value="oldest">الأقدم أولاً</option><option value="newest">الأحدث أولاً</option></select></label>
+        <label class="kds-select-field"><span>عرض الطلبات</span><select id="orderFilter"><option value="all">كل الطلبات</option><option value="in-progress">قيد التحضير</option><option value="ready">جاهز</option></select></label>
+        <label class="kds-setting-toggle"><input id="compactTickets" type="checkbox"><span>تذاكر مختصرة</span></label>
+        <label class="kds-setting-toggle"><input id="soundAlerts" type="checkbox" checked><span>التنبيهات الصوتية</span></label>
+      </section>
+      <nav class="kds-nav" role="tablist" aria-label="أقسام شاشة المطبخ">
+        <button id="activeTab" type="button" class="kds-nav-button is-active" role="tab" aria-selected="true" aria-controls="activePanel" data-kds-tab="activePanel"><span aria-hidden="true">▤</span><span>الطلبات</span><b id="activePanelCount">0</b></button>
+        <button id="archiveTab" type="button" class="kds-nav-button" role="tab" aria-selected="false" aria-controls="archivePanel" data-kds-tab="archivePanel"><span aria-hidden="true">◷</span><span>السجل</span><b id="archiveCount">0</b></button>
+        <button id="productsTab" type="button" class="kds-nav-button" role="tab" aria-selected="false" aria-controls="productsPanel" data-kds-tab="productsPanel"><span aria-hidden="true">＋</span><span>الأصناف</span><b id="productCount">0</b></button>
+        <button id="offersTab" type="button" class="kds-nav-button" role="tab" aria-selected="false" aria-controls="offersPanel" data-kds-tab="offersPanel"><span aria-hidden="true">✦</span><span>العروض</span><b id="offerCount">0</b></button>
+        <button id="salesTab" type="button" class="kds-nav-button" role="tab" aria-selected="false" aria-controls="salesPanel" data-kds-tab="salesPanel"><span aria-hidden="true">ج.م</span><span>البيع</span><b id="salesCount">0</b></button>
+      </nav>
+      <div class="kds-dashboard">
+        <section class="kds-panel archive-panel" id="archivePanel" role="tabpanel" aria-labelledby="archiveTab" hidden>
+          <header class="kds-panel-heading"><div><span class="kds-panel-kicker">الطلبات المكتملة</span><h3 id="archiveHeading">سجل الطلبات</h3></div></header>
+          <div class="archive-list" id="archiveList"></div>
+          <p class="panel-empty" id="archiveEmpty">ستظهر الطلبات المكتملة هنا.</p>
+        </section>
+        <section class="kds-panel products-panel" id="productsPanel" role="tabpanel" aria-labelledby="productsTab" hidden>
+          <header class="kds-panel-heading"><div><span class="kds-panel-kicker">إدارة القائمة</span><h3>إضافة وإزالة الأصناف</h3></div><span id="productCountHeading" class="panel-count">0</span></header>
+          <form id="productForm" class="product-form">
+            <label class="offer-label" for="productArabicName">اسم الصنف بالعربي</label>
+            <input id="productArabicName" name="arabicName" type="text" maxlength="60" required placeholder="مثال: علبة كشري عائلية">
+            <label class="offer-label" for="productEnglishName">الاسم بالإنجليزية (اختياري)</label>
+            <input id="productEnglishName" name="englishName" type="text" maxlength="60" placeholder="Family Koshary">
+            <div class="product-form-row">
+              <label class="offer-label" for="productPrice">السعر بالجنيه</label>
+              <input id="productPrice" name="price" type="number" min="0.01" max="100000" step="0.01" required placeholder="50">
+            </div>
+            <label class="offer-label" for="productCategory">الفئة</label>
+            <select id="productCategory" name="category" required>
+              <option value="koshary">كشري</option><option value="tagines">طواجن</option>
+              <option value="mixes">ميكسات</option><option value="hawawshi">حواوشي</option>
+              <option value="desserts">الحلو</option><option value="extras">إضافات</option>
+              <option value="drinks">مشروبات غازية</option>
+            </select>
+            <button type="submit" class="offer-add-button">إضافة الصنف للقائمة</button>
+          </form>
+          <div class="product-list" id="productList"></div>
+        </section>
+        <section class="kds-panel active-panel" id="activePanel" role="tabpanel" aria-labelledby="activeTab">
+          <header class="kds-panel-heading"><div><span class="kds-panel-kicker">قيد التحضير</span><h3 id="activeHeading">الطلبات النشطة</h3></div></header>
+          <div class="kds-orders" id="kdsOrders"></div>
+          <div id="kdsEmpty" class="kds-empty"><span>✓</span><h3>لا توجد طلبات نشطة</h3><p>ستظهر الطلبات الجديدة هنا.</p></div>
+        </section>
+        <section class="kds-panel offers-panel" id="offersPanel" role="tabpanel" aria-labelledby="offersTab" hidden>
+          <header class="kds-panel-heading"><div><span class="kds-panel-kicker">إدارة الخصومات</span><h3 id="offersHeading">العروض</h3></div></header>
+          <form id="offerForm" class="offer-form">
+            <label class="offer-label" for="offerText">اكتب العرض</label>
+            <input id="offerText" name="offer" maxlength="100" required placeholder="كشري الصفوة + علبة كشري صغيرة مجانًا">
+            <label class="offer-label" for="offerBuyProduct">الصنف المطلوب شراؤه</label>
+            <select id="offerBuyProduct" name="buyProductId" required></select>
+            <div class="offer-quantity-fields">
+              <label class="offer-label" for="offerBuyQuantity">الكمية المطلوبة للشراء</label>
+              <input id="offerBuyQuantity" name="buyQuantity" type="number" min="1" max="99" step="1" value="1" required>
+              <label class="offer-label" for="offerFreeQuantity">عدد الأصناف المجانية</label>
+              <input id="offerFreeQuantity" name="freeQuantity" type="number" min="1" max="99" step="1" value="1" required>
+            </div>
+            <p class="offer-config-note">العميل يختار الصنف المجاني من الأصناف المتاحة عند تفعيل العرض.</p>
+            <button type="submit" class="offer-add-button">إضافة العرض</button>
+          </form>
+          <div class="offer-list" id="offerList"></div>
+          <p class="panel-empty" id="offerEmpty">اكتب عرضًا جديدًا لإضافته.</p>
+        </section>
+        <section class="kds-panel sales-panel" id="salesPanel" role="tabpanel" aria-labelledby="salesTab" hidden>
+          <header class="kds-panel-heading"><div><span class="kds-panel-kicker">تسجيل عملية محلية</span><h3>بيع تجريبي</h3></div><span id="salesCountHeading" class="panel-count">0</span></header>
+          <p class="sales-demo-warning">تسجيل تجريبي فقط: لا يتم تحصيل أو تحويل أي أموال. لا تدخل كلمة مرور أو رمز محفظة هنا.</p>
+          <form id="saleForm" class="sale-form">
+            <label class="offer-label" for="salePhone">رقم العميل</label>
+            <input id="salePhone" name="phone" type="text" inputmode="tel" autocomplete="tel" required placeholder="رقم الهاتف">
+            <label class="offer-label" for="saleAmount">المبلغ بالجنيه</label>
+            <input id="saleAmount" name="amount" type="number" min="0.01" max="1000000" step="0.01" required placeholder="المبلغ">
+            <button type="submit" class="offer-add-button">تسجيل بيع تجريبي</button>
+          </form>
+          <div class="sales-list" id="salesList"></div>
+          <p class="panel-empty" id="salesEmpty">ستظهر عمليات البيع التجريبية هنا.</p>
+        </section>
+      </div>
+    </section>
+  </div>
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
